@@ -36,15 +36,17 @@ jobs:
       - name: Install Composer dependencies
         working-directory: ./backend
         run: composer install --prefer-dist --no-progress --no-interaction
-      
 
       - name: Create coverage folder
+        working-directory: ./backend
         run: mkdir -p storage/coverage
 
       - name: Run tests with coverage
+        working-directory: ./backend
         run: ./vendor/bin/phpunit --coverage-clover=storage/coverage/clover.xml
 
       - name: SonarCloud Scan
+        working-directory: ./backend
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           organization: celestin-001
