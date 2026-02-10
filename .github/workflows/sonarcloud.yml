@@ -1,0 +1,68 @@
+name: SonarCloud
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: mbstring, bcmath, pdo_mysql, xml
+          coverage: xdebug
+
+      - name: Install Composer dependencies
+        working-directory: ./backend
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Create coverage folder
+        working-directory: ./backend
+        run: mkdir -p storage/coverage
+
+      - name: Set up .env and generate key
+        working-directory: ./backend
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Wait for MySQL
+        run: |
+          echo "Waiting for MySQL..."
+          for i in {1..20}; do
+            mysqladmin ping -h 127.0.0.1 -uroot -proot && break
+            sleep 3
+          done
+
+      - name: Run tests with coverage
+        working-directory: ./backend
+        run: ./vendor/bin/phpunit --coverage-clover=storage/coverage/clover.xml
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: backend

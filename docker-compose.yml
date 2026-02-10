@@ -24,4 +24,20 @@ services:
       MYSQL_PASSWORD: Geeks2025@
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3307:3307"
+      - "3307:3306"
+
+  sonarqube:
+    image: 'sonarqube:latest'
+    container_name: sonarqube
+    restart: always
+    ports:
+      - '9000:9000'
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
