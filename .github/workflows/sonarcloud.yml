@@ -34,8 +34,10 @@ jobs:
           coverage: xdebug
 
       - name: Install Composer dependencies
+        working-directory: ./backend
         run: composer install --prefer-dist --no-progress --no-interaction
-        
+      
+
       - name: Create coverage folder
         run: mkdir -p storage/coverage
 
