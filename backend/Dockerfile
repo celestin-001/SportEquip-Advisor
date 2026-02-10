@@ -1,13 +1,20 @@
 FROM php:8.2-fpm
 
+# Installer les dépendances système et PHP
 RUN apt-get update && apt-get install -y \
-    git zip unzip libzip-dev \
-    && docker-php-ext-install pdo pdo_mysql zip\
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    git zip unzip libzip-dev libonig-dev libxml2-dev curl \
+    && docker-php-ext-install pdo pdo_mysql zip
+
+# Installer Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www
 
+# Copier tout le projet d'abord
 COPY . .
 
+# Installer les dépendances PHP via Composer
+RUN composer install --no-dev --optimize-autoloader
+
+# Assurer les bons droits
 RUN chown -R www-data:www-data /var/www

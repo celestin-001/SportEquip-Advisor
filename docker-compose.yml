@@ -1,8 +1,20 @@
+
+
 services:
   app:
     build: ./backend
     volumes:
       - ./backend:/var/www
+      - ./backend/storage:/var/www/storage
+      - ./backend/bootstrap/cache:/var/www/bootstrap/cache
+    expose:
+      - "9000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: sportequipDB
+      DB_USERNAME: root
+      DB_PASSWORD: Geeks2025@
     depends_on:
       - db
 
@@ -20,24 +32,13 @@ services:
     image: mysql:8
     environment:
       MYSQL_DATABASE: sportequipDB
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Geeks2025@
-      MYSQL_ROOT_PASSWORD: root
+      #MYSQL_USER: root
+      #MYSQL_PASSWORD: Geeks2025@
+      MYSQL_ROOT_PASSWORD: Geeks2025@
     ports:
       - "3307:3306"
-
-  sonarqube:
-    image: 'sonarqube:latest'
-    container_name: sonarqube
-    restart: always
-    ports:
-      - '9000:9000'
     volumes:
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_extensions:/opt/sonarqube/extensions
-      - sonarqube_logs:/opt/sonarqube/logs
+      - db_data:/var/lib/mysql
+
 volumes:
-  sonarqube_data:
-  sonarqube_extensions:
-  sonarqube_logs:
+  db_data:
