@@ -8,7 +8,7 @@
 ## Mardi 10 Février 2026
 
 ## Objectif
-Permettre à l'utilisateur de renseigner son profil sportif afin de personnaliser les recommandations d’équipement.
+Permettre à l'utilisateur de renseigner son profil sportif afin de personnaliser les recommandations d’équipements.
 
 ## Problème
 Sans les informations du client sur le sport choisi (nom, âge,niveau et la fréquence de pratique,...), il est impossible de proposer des recommandations de produits pertinents.
