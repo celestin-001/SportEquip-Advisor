@@ -1,0 +1,249 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "SportEquip API",
+        "description": "Documentation des endpoints de SportEquip",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080/api",
+            "description": "Serveur local"
+        }
+    ],
+    "paths": {
+        "/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Créer un nouvel utilisateur",
+                "operationId": "5d4fa5d5607ed675ba93907e1fc94534",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fullname",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "fullname": {
+                                        "type": "string",
+                                        "example": "Jean Dupont"
+                                    },
+                                    "age": {
+                                        "type": "integer",
+                                        "example": 25
+                                    },
+                                    "poids": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 70.5
+                                    },
+                                    "taille": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1.75
+                                    },
+                                    "niveau": {
+                                        "type": "string",
+                                        "example": "Débutant"
+                                    },
+                                    "sport_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "jean@test.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Utilisateur créé avec succès"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Connexion utilisateur",
+                "operationId": "67d6d0fdd54fba132e1b6f55ca254183",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "jean@test.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Connexion réussie"
+                    },
+                    "401": {
+                        "description": "Identifiants invalides"
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Déconnexion utilisateur",
+                "operationId": "28d48c13fca984400ac8de99f54ee13a",
+                "responses": {
+                    "200": {
+                        "description": "Déconnexion réussie"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Récupérer tous les produits",
+                "operationId": "080f057905dc32d2f11065d606dc4cd6",
+                "responses": {
+                    "200": {
+                        "description": "Liste de tous les produits"
+                    }
+                }
+            }
+        },
+        "/products/sport/{sport_id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Récupérer les produits par sport",
+                "operationId": "7fb85b77bb5905e33f2dc90607f1420b",
+                "parameters": [
+                    {
+                        "name": "sport_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Liste des produits pour un sport donné"
+                    }
+                }
+            }
+        },
+        "/products/user-sport": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Récupérer les produits correspondant au sport de l'utilisateur",
+                "operationId": "a6f645346466306dbd32aa0da9a86174",
+                "responses": {
+                    "200": {
+                        "description": "Liste des produits"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/sports": {
+            "get": {
+                "tags": [
+                    "Sports"
+                ],
+                "summary": "Récupérer tous les sports",
+                "operationId": "8171a98b44afe5a0817781eed04221fb",
+                "responses": {
+                    "200": {
+                        "description": "Liste de tous les sports"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Endpoints pour la gestion des utilisateurs"
+        },
+        {
+            "name": "Products",
+            "description": "Endpoints pour gérer les produits"
+        },
+        {
+            "name": "Sports",
+            "description": "Endpoints pour les sports"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Utiliser le token de Sanctum pour sécuriser les endpoints",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
