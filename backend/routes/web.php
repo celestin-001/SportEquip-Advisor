@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/register', function () {
-    return view('pages/inscription'); 
+    return view('pages/inscription');
 })->name('register');

@@ -32,7 +32,7 @@ Route::post('register', [AuthController::class, 'register']); // Inscription
 Route::post('login', [AuthController::class, 'login']); // Connexion
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']); // Déconnexion
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+

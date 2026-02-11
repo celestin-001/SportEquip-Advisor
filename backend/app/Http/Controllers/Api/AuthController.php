@@ -128,4 +128,23 @@ class AuthController extends Controller
             'message' => 'Déconnecté avec succès'
         ]);
     }
+
+
+    /**
+     * @OA\Post(
+     *     path="/logout",
+     *     tags={"Auth"},
+     *     summary="Déconnexion utilisateur",
+     *     security={{"sanctum": {}}},
+     *     @OA\Response(response=200, description="Déconnexion réussie")
+     * )
+     */
+    public function profit(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'Déconnecté avec succès'
+        ]);
+    }
 }
