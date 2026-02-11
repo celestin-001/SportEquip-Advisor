@@ -69,4 +69,26 @@ class ProductController extends Controller
         $products = Product::where('sport_id', $user->sport_id)->get();
         return response()->json($products, 200);
     }
+
+    public function filterByPrice(Request $request)
+    {
+        $min = $request->query('min'); // prix minimum
+        $max = $request->query('max'); // prix maximum
+
+        $query = Product::query();
+
+        if ($min !== null) {
+            $query->where('price', '>=', $min);
+        }
+
+        if ($max !== null) {
+            $query->where('price', '<=', $max);
+        }
+
+        $products = $query->get();
+
+        return response()->json($products, 200);
+    }
+
+    
 }

@@ -23,7 +23,8 @@ use App\Http\Controllers\Api\AuthController;
 Route::get('products', [ProductController::class, 'index']); // Tous les produits
 Route::get('products/sport/{sport}', [ProductController::class, 'bySport']); // Produits par sport
 Route::middleware('auth:sanctum')->get('products/user-sport', [ProductController::class, 'byUserSport']); // Produits par sport de l'utilisateur
-
+// Filtrer les produits par prix (optionnel : min et max)
+Route::get('products/filter/price', [ProductController::class, 'filterByPrice']);
 // Sports
 Route::get('sports', [SportController::class, 'index']); // Tous les sports
 
