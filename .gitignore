@@ -1,0 +1,5 @@
+.env
+.vscode/
+backend/coverage-html/
+backend/coverage.xml
+backend/tests-report.xml
