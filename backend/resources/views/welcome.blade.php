@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -130,4 +130,47 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
+
+
+@extends('layouts.menu')
+
+@section('title', 'Geek')
+
+@section('content')
+
+    <main class="main-container">
+
+        <section class="left">
+            <h2>Bienvenue sur SportEquip Advisor</h2>
+            <p>
+                Trouvez le matériel sportif adapté à votre niveau et à votre pratique.
+            </p>
+
+            <div class="carousel">
+                <img src="images/chaussure.webp" alt="Promo 1">
+                <img src="images/sac.webp" alt="Promo 2">
+                <img src="images/715b4.jpg" alt="Promo 3">
+            </div>
+        </section>
+
+        <section class="right">
+
+            <div class="products">
+                <div class="card">
+                    <img src="images/715b4.jpg" alt="Chaussures">
+                    <h3>Chaussures Running</h3>
+                    <p class="price">49,99 €</p>
+                </div>
+
+                <div class="card">
+                    <img src="images/715b4.jpg" alt="Ballon">
+                    <h3>Ballon de Football</h3>
+                    <p class="price">19,99 €</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+@endsection

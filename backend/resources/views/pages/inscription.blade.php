@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>SportEquip Advisor</title>
-    <link rel="stylesheet" href="../../../public/css/style1.css">
+    <link rel="stylesheet" href="css/style1.css">
 </head>
 <body>
 
     <header>
-        <h1>SportEquip Advisor</h1>
+        <h1> <a href="/" style="color: white;">SportEquip Advisor</a></h1>
     </header>
 
     <main class="container">
