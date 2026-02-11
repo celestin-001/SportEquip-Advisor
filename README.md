@@ -49,3 +49,17 @@ Un formulaire fonctionnel permettant :
 
 Action => Mieux gérer la gestion du temps
 
+### Organisation
+#### Matin
+- Sprint planning :
+  - Mise en place des apis
+  - Amélioration des issues
+  - Mise en place de l'interface d'utilisateur 
+    
+- Sprint review :
+    - Trop de ticket (en progression) par rapport au nombre de développeur
+
+## Retro
+- gestion du temps
+-
+#### Après-midi
