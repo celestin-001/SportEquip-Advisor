@@ -12,39 +12,65 @@
         }
     ],
     "paths": {
-        "/api/register": {
+        "/register": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Créer un nouvel utilisateur",
-                "operationId": "8e4e3cb7b46126f4696379d3c7eeb4ad",
+                "operationId": "5d4fa5d5607ed675ba93907e1fc94534",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "name",
+                                    "fullname",
                                     "email",
                                     "password",
                                     "password_confirmation"
                                 ],
                                 "properties": {
-                                    "name": {
-                                        "type": "string"
+                                    "fullname": {
+                                        "type": "string",
+                                        "example": "Jean Dupont"
+                                    },
+                                    "age": {
+                                        "type": "integer",
+                                        "example": 25
+                                    },
+                                    "poids": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 70.5
+                                    },
+                                    "taille": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1.75
+                                    },
+                                    "niveau": {
+                                        "type": "string",
+                                        "example": "Débutant"
+                                    },
+                                    "sport_id": {
+                                        "type": "integer",
+                                        "example": 1
                                     },
                                     "email": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "example": "jean@test.com"
                                     },
                                     "password": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "example": "password"
                                     },
                                     "password_confirmation": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "example": "password"
                                     }
                                 },
                                 "type": "object"
@@ -57,18 +83,18 @@
                         "description": "Utilisateur créé avec succès"
                     },
                     "422": {
-                        "description": "Validation error"
+                        "description": "Erreur de validation"
                     }
                 }
             }
         },
-        "/api/login": {
+        "/login": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Connexion utilisateur",
-                "operationId": "222b2625838e3c57e017987f73598fda",
+                "operationId": "67d6d0fdd54fba132e1b6f55ca254183",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -81,11 +107,13 @@
                                 "properties": {
                                     "email": {
                                         "type": "string",
-                                        "format": "email"
+                                        "format": "email",
+                                        "example": "jean@test.com"
                                     },
                                     "password": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "example": "password"
                                     }
                                 },
                                 "type": "object"
@@ -103,13 +131,13 @@
                 }
             }
         },
-        "/api/logout": {
+        "/logout": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Déconnexion utilisateur",
-                "operationId": "ad65cbbd4e9f201619eae184a5961a98",
+                "operationId": "28d48c13fca984400ac8de99f54ee13a",
                 "responses": {
                     "200": {
                         "description": "Déconnexion réussie"
@@ -122,13 +150,13 @@
                 ]
             }
         },
-        "/api/products": {
+        "/products": {
             "get": {
                 "tags": [
                     "Products"
                 ],
                 "summary": "Récupérer tous les produits",
-                "operationId": "d97d1c3727cbac49708b85f7d11f7d58",
+                "operationId": "080f057905dc32d2f11065d606dc4cd6",
                 "responses": {
                     "200": {
                         "description": "Liste de tous les produits"
@@ -136,13 +164,13 @@
                 }
             }
         },
-        "/api/products/sport/{sport_id}": {
+        "/products/sport/{sport_id}": {
             "get": {
                 "tags": [
                     "Products"
                 ],
                 "summary": "Récupérer les produits par sport",
-                "operationId": "af623a27cd8e15b9b945c5d87b0b24a7",
+                "operationId": "7fb85b77bb5905e33f2dc90607f1420b",
                 "parameters": [
                     {
                         "name": "sport_id",
@@ -160,13 +188,13 @@
                 }
             }
         },
-        "/api/products/user-sport": {
+        "/products/user-sport": {
             "get": {
                 "tags": [
                     "Products"
                 ],
                 "summary": "Récupérer les produits correspondant au sport de l'utilisateur",
-                "operationId": "73c1f7dd0a2ce810663f23357b67ca92",
+                "operationId": "a6f645346466306dbd32aa0da9a86174",
                 "responses": {
                     "200": {
                         "description": "Liste des produits"
@@ -179,13 +207,13 @@
                 ]
             }
         },
-        "/api/sports": {
+        "/sports": {
             "get": {
                 "tags": [
                     "Sports"
                 ],
                 "summary": "Récupérer tous les sports",
-                "operationId": "53670591c15c3c0b83a5c67f97d2ae54",
+                "operationId": "8171a98b44afe5a0817781eed04221fb",
                 "responses": {
                     "200": {
                         "description": "Liste de tous les sports"

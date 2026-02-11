@@ -15,7 +15,7 @@ class SportController extends Controller
 {
      /**
      * @OA\Get(
-     *     path="/api/sports",
+     *     path="/sports",
      *     tags={"Sports"},
      *     summary="Récupérer tous les sports",
      *     @OA\Response(response=200, description="Liste de tous les sports")
