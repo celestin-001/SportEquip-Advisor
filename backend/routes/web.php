@@ -14,21 +14,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/register', function () {
-    return view('pages/inscription');
-})->name('register');
-
-
 // Route::get('/', function () {
-//     $products = Product::all();
-//     return view('welcome', compact('products'));
+//     return view('welcome');
 // });
-
-
 
 
 Route::get('/', [HomeController::class, 'index']);
