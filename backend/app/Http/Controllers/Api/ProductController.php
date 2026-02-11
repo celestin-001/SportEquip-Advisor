@@ -18,7 +18,7 @@ class ProductController extends Controller
     // Récupérer tous les produits
     /**
      * @OA\Get(
-     *     path="/api/products",
+     *     path="/products",
      *     tags={"Products"},
      *     summary="Récupérer tous les produits",
      *     @OA\Response(response=200, description="Liste de tous les produits")
@@ -32,7 +32,7 @@ class ProductController extends Controller
     // Récupérer les produits par sport
     /**
      * @OA\Get(
-     *     path="/api/products/sport/{sport_id}",
+     *     path="/products/sport/{sport_id}",
      *     tags={"Products"},
      *     summary="Récupérer les produits par sport",
      *     @OA\Parameter(
@@ -53,7 +53,7 @@ class ProductController extends Controller
     // Récupérer les produits selon le sport de l'utilisateur connecté
      /**
      * @OA\Get(
-     *     path="/api/products/user-sport",
+     *     path="/products/user-sport",
      *     tags={"Products"},
      *     summary="Récupérer les produits correspondant au sport de l'utilisateur",
      *     security={{"sanctum": {}}},
