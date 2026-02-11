@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>SportEquip Advisor</title>
-
     <link rel="stylesheet" href="css/style1.css">
 </head>
 <body>
