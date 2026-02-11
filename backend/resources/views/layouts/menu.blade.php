@@ -2,30 +2,42 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Le Compagnon d'Équipement</title>
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <title>SportSelect</title>
+    <link rel="stylesheet" href="{{asset('css/style3.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo">SportEquip Advisor</div>
-        <nav class="nav">
-            <a href="{{ route('register') }}" class="btn"> Se connecter ou S’inscrire</a>
-        </nav>
-    </header>
+<!-- NAVBAR -->
+<header class="navbar">
+    <h1>SportEquip Advisor</h1>
 
-    <main>
+    <div class="right-nav">
+        <div class="user-icon">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <span class="login-text">Se connecter</span>
+    </div>
+</header>
+
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Trouvez l’équipement parfait</h1>
+        <p>Pour votre sport et votre niveau</p>
+
+    </div>
+</section>
 
         @yield('content')   
 
-    </main>
-
-
-    <footer class="footer">
-        <p>Équipe Agile SportEquip</p>
-        <p>Mentions légales – Projet étudiant – Données fictives</p>
-    </footer>
+<footer>
+    <p>© 2026 - SportEquip Advisor</p>
+</footer>
 
 </body>
 </html>
+
