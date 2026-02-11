@@ -24,10 +24,25 @@ class ProductController extends Controller
      *     @OA\Response(response=200, description="Liste de tous les produits")
      * )
      */
-    public function index()
+    // public function index()
+    // {
+    //     return response()->json(Product::all(), 200);
+    // }
+
+    public function index(Request $request)
     {
-        return response()->json(Product::all(), 200);
+        $query = Product::query();
+
+        if ($request->has('sports')) {
+            $sportIds = explode(',', $request->sports);
+            $query->whereIn('sport_id', $sportIds);
+        }
+
+        return response()->json($query->get(), 200);
     }
+
+    
+
 
     // Récupérer les produits par sport
     /**
