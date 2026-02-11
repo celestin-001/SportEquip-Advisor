@@ -18,3 +18,8 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Assurer les bons droits
 RUN chown -R www-data:www-data /var/www
+
+# Installer Xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
