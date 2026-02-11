@@ -139,38 +139,110 @@
 
 @section('content')
 
-    <main class="main-container">
+<!-- PRODUITS + FILTRES -->
+<section class="main-content">
 
-        <section class="left">
-            <h2>Bienvenue sur SportEquip Advisor</h2>
-            <p>
-                Trouvez le matériel sportif adapté à votre niveau et à votre pratique.
-            </p>
+    <!-- FILTRES VERTICAUX -->
+    <aside class="filters">
+        <h3>Filtres</h3>
 
-            <div class="carousel">
-                <img src="images/chaussure.webp" alt="Promo 1">
-                <img src="images/sac.webp" alt="Promo 2">
-                <img src="images/715b4.jpg" alt="Promo 3">
+        <div class="filter-block">
+            <h4>Sport</h4>
+            <label><input type="checkbox"> Running</label>
+            <label><input type="checkbox"> Tennis</label>
+            <label><input type="checkbox"> Vélo</label>
+        </div>
+
+        <div class="filter-block">
+            <h4>Niveau</h4>
+            <label><input type="checkbox"> Débutant</label>
+            <label><input type="checkbox"> Intermédiaire</label>
+            <label><input type="checkbox"> Avancé</label>
+        </div>
+
+        <div class="filter-block">
+            <h4>Prix</h4>
+        
+            <div class="price-values">
+                <span id="min-value">20 €</span>
+                —
+                <span id="max-value">200 €</span>
             </div>
-        </section>
-
-        <section class="right">
-
-            <div class="products">
-                <div class="card">
-                    <img src="images/715b4.jpg" alt="Chaussures">
-                    <h3>Chaussures Running</h3>
-                    <p class="price">49,99 €</p>
-                </div>
-
-                <div class="card">
-                    <img src="images/715b4.jpg" alt="Ballon">
-                    <h3>Ballon de Football</h3>
-                    <p class="price">19,99 €</p>
-                </div>
+        
+            <div class="price-range">
+                <label for="prix">Prix</label>
+                <input type="range" id="prix" name="prix" min="0" max="200" value="20">
             </div>
-        </section>
+        </div>
+        
 
-    </main>
+        <script>
+            const range = document.getElementById('prix');
+            const minValue = document.getElementById('min-value');
+            
+            range.addEventListener('input', () => {
+                minValue.textContent = range.value + " €";
+            });
+            </script>
+            
+            
+        
+        
+        
+    </aside>
+
+    <!-- PRODUITS -->
+    <div class="products">
+
+            @foreach($products as $product)
+                <div class="card">
+                    <img class="image" src="{{ asset('images/chaussure.webp') }}" alt="">
+                    <h3>{{ $product->nom }}</h3>
+                    <p class="price">{{ $product->prix }} €</p>
+                    <button>Voir le produit</button>
+                </div>
+            @endforeach
+
+        {{-- <div class="card">
+            <img class="image" src="images/chaussure.webp" alt="">
+            <h3>Raquette Tennis Expert</h3>
+            <p class="price">119,99 €</p>
+            <button>Voir le produit</button>
+        </div>
+
+        <div class="card">
+            <img class="image" src="images/chaussure.webp" alt="">
+            <h3>Vélo Route Performance</h3>
+            <p class="price">1299 €</p>
+            <button>Voir le produit</button>
+        </div>
+
+
+        <div class="card">
+            <img class="image" src="images/chaussure.webp" alt="">
+            <h3>Vélo Route Performance</h3>
+            <p class="price">1299 €</p>
+            <button>Voir le produit</button>
+        </div>
+
+
+        <div class="card">
+            <img class="image" src="images/chaussure.webp" alt="">
+            <h3>Vélo Route Performance</h3>
+            <p class="price">1299 €</p>
+            <button>Voir le produit</button>
+        </div>
+
+
+        <div class="card">
+            <img class="image" src="images/chaussure.webp" alt="">
+            <h3>Vélo Route Performance</h3>
+            <p class="price">1299 €</p>
+            <button>Voir le produit</button>
+        </div> --}}
+
+    </div>
+
+</section>
 
 @endsection
