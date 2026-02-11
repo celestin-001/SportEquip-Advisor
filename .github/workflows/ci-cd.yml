@@ -1,4 +1,4 @@
-name: Laravel CI
+name: CI Laravel Tests & SonarQube
 
 on:
   push:
@@ -7,49 +7,78 @@ on:
     branches: [main]
 
 jobs:
-  ci:
+  laravel-tests:
     runs-on: ubuntu-latest
     services:
       mysql:
         image: mysql:8
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: laravel
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: sportequipDB
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h localhost -uroot -proot"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+          --health-cmd "mysqladmin ping --silent"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      APP_ENV: testing
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: sportequipDB
+      DB_USERNAME: root
+      DB_PASSWORD: root_password
+      COMPOSER_ALLOW_SUPERUSER: 1
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - uses: shivammathur/setup-php@v2
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
-          extensions: mbstring, bcmath, pdo_mysql, xml
+          extensions: mbstring, pdo_mysql, bcmath, xml
           coverage: xdebug
 
-      - working-directory: ./backend
-        run: composer install --prefer-dist --no-progress --no-interaction
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
-      - working-directory: ./backend
+      - name: Wait for MySQL
         run: |
-          cp .env.example .env
-          php artisan key:generate
-
-      - run: |
-          until mysqladmin ping -h 127.0.0.1 -uroot -proot >/dev/null 2>&1; do
-            sleep 3
+          until mysqladmin ping -h 127.0.0.1 -P 3306 --silent; do
+            sleep 2
           done
 
-      - working-directory: ./backend
-        run: ./vendor/bin/phpunit --coverage-clover=storage/coverage/clover.xml
+      - name: Run migrations
+        run: php artisan migrate --env=testing --force
 
-      - uses: SonarSource/sonarcloud-github-action@v2
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Run Tests with Coverage & JUnit
+        run: |
+          php artisan test \
+            --coverage-clover=coverage.xml \
+            --log-junit=tests-report.xml
+
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v3
         with:
-          projectBaseDir: backend
+          name: test-reports
+          path: |
+            coverage.xml
+            tests-report.xml
+            coverage-html
+
+      - name: Run SonarQube Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectKey: ${{ secrets.SONAR_PROJECT_KEY }}
+          organization: ${{ secrets.SONAR_ORG }}
+          token: ${{ secrets.SONAR_TOKEN }}
+          extraProperties: |
+            sonar.sources=app
+            sonar.tests=tests
+            sonar.php.coverage.reportPaths=coverage.xml
+            sonar.junit.reportPaths=tests-report.xml
