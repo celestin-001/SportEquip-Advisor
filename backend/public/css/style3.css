@@ -142,6 +142,16 @@ header{
     color: black;
 }
 
+.availability-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
 /* Texte "Se connecter" */
 .login-text {
     font-size: 12px;

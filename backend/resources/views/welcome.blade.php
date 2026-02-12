@@ -10,13 +10,6 @@
     <!-- FILTRES VERTICAUX -->
     <aside class="filters">
         <h3>Filtres</h3>
-
-        {{-- <div class="filter-block">
-            <h4>Sport</h4>
-            <label><input type="checkbox"> Running</label>
-            <label><input type="checkbox"> Tennis</label>
-            <label><input type="checkbox"> Vélo</label>
-        </div> --}}
         <div class="filter-block">
             <h4>Sport</h4>
             <div id="sports-container">
@@ -36,8 +29,8 @@
         
             <div class="price-values">
                 <span id="min-value">20 €</span>
-                —
-                <span id="max-value">200 €</span>
+                {{-- —
+                <span id="max-value">200 €</span> --}}
             </div>
         
             <div class="price-range">
@@ -48,30 +41,25 @@
         
 
         <script>
+            let debounceTimer;
             const range = document.getElementById('prix');
             const minValue = document.getElementById('min-value');
-            
-            range.addEventListener('input', () => {
-                minValue.textContent = range.value + " €";
+
+            range.addEventListener('input', function () {
+                minValue.textContent = this.value + " €";
+
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    filterProducts();
+                }, 300);
             });
-            </script>
+
+        </script>
         
     </aside>
 
     <!-- PRODUITS -->
-    <div class="products" id="products-container">
-            {{-- @foreach($products as $product)
-                <div class="card">
-                    <img class="image" src="{{ asset('images/' . $product->image) }}" alt="{{ $product->nom }}">
-
-                    <img class="image" src="{{ asset('images/chaussure.webp') }}" alt="">
-                    <h3>{{ $product->nom }}</h3>
-                    <p class="price">{{ $product->prix }} €</p>
-                    <button>Voir le produit</button>
-                </div>
-            @endforeach --}}
-
-    </div>
+    <div class="products" id="products-container"></div>
 
 </section>
 
@@ -144,20 +132,13 @@
         filterProducts();
     }
 
-
-
-    // Filtrer produits par sport
-    // function filterBySport(sportId) {
-    //     fetch(`/api/products/sport/${sportId}`)
-    //         .then(response => response.json())
-    //         .then(data => displayProducts(data));
-    // }
-
     function filterProducts() {
 
         const allCheckbox = document.getElementById("all-sports");
         const sportCheckboxes = document.querySelectorAll('#sports-container input:not(#all-sports)');
         const checkedSports = document.querySelectorAll('#sports-container input:not(#all-sports):checked');
+
+        const priceValue = document.getElementById("prix").value;
 
         let sportIds = [];
 
@@ -165,49 +146,96 @@
             sportIds.push(input.value);
         });
 
-        // ✅ Si tous les sports sont cochés → cocher "Tous"
+        // Synchronisation bouton "Tous"
         if (checkedSports.length === sportCheckboxes.length && sportCheckboxes.length > 0) {
             allCheckbox.checked = true;
         } else {
             allCheckbox.checked = false;
         }
 
-        // ✅ Si aucun sport sélectionné → afficher tous
-        if (sportIds.length === 0) {
-            loadProducts();
-            return;
+        // Construire URL dynamique
+        let url = `/api/products?max_price=${priceValue}`;
+
+        if (sportIds.length > 0) {
+            url += `&sports=${sportIds.join(',')}`;
         }
 
-        fetch(`/api/products?sports=${sportIds.join(',')}`)
+        // console.log("URL API:", url);
+
+
+        fetch(url)
             .then(response => response.json())
             .then(data => displayProducts(data));
-    }
+        }
+
 
 
     
     // Afficher produits
-    function displayProducts(products) {
+    // function displayProducts(products) {
     
+    //     const container = document.getElementById("products-container");
+    //     container.innerHTML = "";
+    
+    //     if (products.length === 0) {
+    //         container.innerHTML = "<p>Aucun produit trouvé</p>";
+    //         return;
+    //     }
+    
+    //     products.forEach(product => {
+    //         container.innerHTML += `
+    //             <div class="card">
+    //                 <img class="image" src="/images/chaussure.webp" alt="">
+    //                 <h3>${product.nom}</h3>
+    //                 <p class="price">${product.prix} €</p>
+    //                 <button>Voir le produit</button>
+    //             </div>
+    //         `;
+    //     });
+    
+    // }
+
+
+
+
+    function displayProducts(products) {
         const container = document.getElementById("products-container");
         container.innerHTML = "";
-    
+
         if (products.length === 0) {
             container.innerHTML = "<p>Aucun produit trouvé</p>";
             return;
         }
-    
+
         products.forEach(product => {
-            container.innerHTML += `
-                <div class="card">
-                    <img class="image" src="/images/chaussure.webp" alt="">
-                    <h3>${product.nom}</h3>
-                    <p class="price">${product.prix} €</p>
-                    <button>Voir le produit</button>
-                </div>
-            `;
+           // Déterminer la couleur selon la disponibilité
+        let availabilityColor = product.disponibilite === 0
+            ? 'red' 
+            : product.disponibilite < 5
+                ? 'orange' 
+                : 'green';
+
+        container.innerHTML += `
+            <div class="card" style="position: relative;">
+                <div class="availability-dot" style="
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background-color: ${availabilityColor};
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                " title="Disponibilité: ${product.disponibilite}"></div>
+
+                <img class="image" src="/images/chaussure.webp" alt="">
+                <h3>${product.nom}</h3>
+                <p class="price">${product.prix} €</p>
+                <button>Voir le produit</button>
+            </div>
+        `;
         });
-    
     }
+
     
     </script>
     
