@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* NAVBAR */
+.navbar {
+    background:white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* HERO */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d');
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero button {
+    padding: 10px 20px;
+    background: #0d47a1;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    display: flex;
+    padding: 40px;
+}
+
+/* FILTRES */
+.filters {
+    width: 250px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-right: 30px;
+}
+
+.filter-block {
+    margin-bottom: 20px;
+}
+
+.filter-block label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* PRODUITS */
+.products {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card .image {
+    height: 150px;
+    background: #ddd;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #0d47a1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+footer {
+    background-color: #09138f; 
+    color:white;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}
+
+
+header{
+    background-color: #09138f; 
+    color:blue;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}
+
+
+/* Header layout */
+.navbar {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* Bloc icône + texte */
+.right-nav {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+}
+
+/* Icône utilisateur */
+.user-icon {
+    font-size: 28px;
+    color: black;
+}
+
+.availability-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.disabled-card {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    pointer-events: none;
+}
+
+
+
+/* Texte "Se connecter" */
+.login-text {
+    font-size: 12px;
+    margin-top: 3px;
+    color: black;
+}

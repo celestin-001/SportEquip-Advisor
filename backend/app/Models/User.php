@@ -18,7 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'fullname',
+        'age',
+        'poids',
+        'taille',
+        'niveau',
+        'sport_id',
         'email',
         'password',
     ];
@@ -42,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class, 'sport_id');
+    }
 }
