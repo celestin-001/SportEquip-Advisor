@@ -128,4 +128,5 @@ class AuthController extends Controller
             'message' => 'Déconnecté avec succès'
         ]);
     }
+
 }

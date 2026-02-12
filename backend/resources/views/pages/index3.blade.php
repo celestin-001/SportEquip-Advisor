@@ -21,8 +21,6 @@
     </div>
 </header>
 
-    
-</header>
 
 
 <!-- HERO SECTION -->
