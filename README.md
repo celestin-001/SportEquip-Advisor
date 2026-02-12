@@ -1,53 +1,126 @@
-# SportEquip-Advisor
-# Equipe : Les Geeks 
+# SportEquip Advisor  
+## Le Compagnon d'Équipement
+
+
+## Équipe
+
+**Nom de l'équipe :**  Les Geeks 
+
+**Membres :**
+
     - TRAORE Aminata
     - MOUANOU BANZOUZI J'aime Kora-karen
     - GAYE Astou
     - Celestin M'bemba Goumou
-# Compte rendu
-## Mardi 10 Février 2026
+
+## Présentation du Projet
+
+SportEquip Advisor est une application web développée avec **PHP Laravel** permettant d’aider un utilisateur à choisir le matériel sportif adapté à sa pratique.
+
+L’application analyse le profil sportif de l’utilisateur afin de proposer des recommandations personnalisées.
+
+Le projet a été entièrement conteneurisé avec **Docker** afin de garantir une installation simple, rapide et reproductible.
 
 ## Objectif
-Permettre à l'utilisateur de renseigner son profil sportif afin de personnaliser les recommandations d’équipements.
 
-## Problème
-Sans les informations du client sur le sport choisi (nom, âge,niveau et la fréquence de pratique,...), il est impossible de proposer des recommandations de produits pertinents.
+L’objectif du projet est de développer un **MVP** permettant :
 
-## Résultat attendu
-Un formulaire fonctionnel permettant :
-- Sélection du sport
-- Sélection du niveau (débutant, confirmé, expert)
-- Indication de la fréquence de pratique
-- Validation des champs
-- Stockage des données utilisateur
+- La saisie d’un profil sportif
+- La recommandation d’équipements adaptés
+- Le filtrage par budget
+- La gestion simulée de la disponibilité des produits
 
-## Critères d’acceptation
-- L’utilisateur peut soumettre le formulaire sans erreur
-- Les données sont correctement enregistrées
+## Attentes du Client
+
+Le client souhaitait une solution permettant :
+
+1. La saisie des informations suivantes :
+   - Sport pratiqué
+   - Niveau (débutant, confirmé, expert)
+   - Fréquence de pratique
+
+2. Un moteur de recommandation capable de :
+   - Proposer des produits adaptés
+   - Afficher le nom, le prix et l’image
+
+3. Un filtre de budget :
+   - Définir une fourchette de prix
+   - Adapter dynamiquement les recommandations
+
+4. Une gestion de disponibilité :
+   - Simulation du stock en magasin
+   - Indication si le produit est disponible ou non
+
+## Fonctionnalités Réalisées
+
+Dans le cadre du MVP, nous avons développé :
+
+ - 1. Interface de Navigation et Header
+     Identité visuelle : Intégration du nom du projet "SportEquip Advisor" et d'un système de connexion ("Se connecter").
+
+     Bannière immersive : Mise en place d'un visuel dynamique (terrain de sport et ballon) pour renforcer l'univers thématique de  l'application.
+
+ - 2. Système de Filtrage Latéral (Sidebar)
+    Filtres par Sport : Possibilité de sélectionner une catégorie spécifique (Running, Tennis, Vélo).
+
+    Filtres par Niveau : Sélection du profil utilisateur parmi trois options (Débutant, Intermédiaire, Avancé). On note sur la capture que le niveau "Avancé" est activé.
+
+    Sélecteur de Prix : Intégration d'une barre de réglage permettant de définir une tranche budgétaire comprise entre 20 € et 200 €.
+
+ - 3. Catalogue de Produits Dynamique
+    Présentation en grille : Affichage des équipements sous forme de cartes  organisées sur plusieurs colonnes.
+
+    Contenu des fiches produits : Chaque carte affiche :
+
+   Un emplacement pour l'image du produit.
+
+   Le nom du produit (ex: "Chaussures Running Pro", "Raquette Tennis Expert").
+
+   Le prix clairement indiqué en Euros.
+
+   Bouton d'action : Présence d'un bouton "Voir le produit" sur chaque fiche pour accéder aux détails.
+
+ - 4. Pied de page (Footer)
+    Mention légale : Intégration d'un footer sobre affichant le copyright "© 2026 - SportEquip Advisor".
 
 
-### Organisation
+## Technologies Utilisées
 
-#### Matin
-- Choix du sujet
-- Choix des technologies
-- configuration de l'environnement
-- Initialisation du projet sur Github
+- **PHP 8**
+- **Laravel**
+- **MySQL**
+- **Docker & Docker Compose**
+- **Composer**
+- **SonarQube** 
 
-- Partage des tâches
-    - Une testeuse
-    - Deux développeurs Back-End
-    - Une développeuse Front-End
-- Issues en cours
-#### Après-midi
- - ennumerer les principaux bession l'issues
- - Mise en place de notre base de données
 
-## Retro
-+: 1 point positif : on a trouvé les technologies, nous sommes à l’aise pour travailler, et nous avons réussi à configurer notre environnement de travail.
--: 1 point à améliorer : on s’attarde sur certains détails.
+##  Structure du Projet
 
-Action => Mieux gérer la gestion du temps
+SportEquip-Advisor/
+│
+├── backend/ # Application Laravel
+├── docker/ # Configuration Docker
+├── docker-compose.yml # Orchestration des conteneurs
+├── sonar-project.properties # Analyse qualité du code
+└── README.md
+
+
+# Installation et Lancement
+
+## Prérequis
+
+- Docker
+- Docker Compose
+
+## Cloner le projet
+
+```bash
+git clone https://github.com/celestin-001/SportEquip-Advisor.git
+cd SportEquip-Advisor
+
+
+docker-compose up -d
+
 
 ### Organisation
 #### Matin

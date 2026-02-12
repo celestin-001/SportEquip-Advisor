@@ -14,23 +14,23 @@ class ProductSeeder extends Seeder
     {
         Product::insert([
             [
-                'nom' => 'Chaussures Running Débutant',
+                'nom' => 'chaussure de football',
                 'prix' => 49.99,
-                'image' => 'running_debutant.jpg',
+                'image' => 'chaussure_football_1.jpeg',
                 'sport_id' => 3,
                 'disponibilite' => 12
             ],
             [
-                'nom' => 'Chaussures Running Expert',
+                'nom' => 'chaussure fitness',
                 'prix' => 129.99,
-                'image' => 'running_expert.jpg',
+                'image' => 'chaussures_fitness1.jpeg',
                 'sport_id' => 3,
                 'disponibilite' => 3
             ],
             [
-                'nom' => 'Ballon de Football',
+                'nom' => 'gants de foot.jpeg',
                 'prix' => 19.99,
-                'image' => 'football_ballon.jpg',
+                'image' => 'gants_de_foot.jpeg',
                 'sport_id' => 1,
                 'disponibilite' => 20,
             ],
@@ -53,6 +53,76 @@ class ProductSeeder extends Seeder
                 'prix' => 59.99,
                 'image' => 'fitness_haltere.jpg',
                 'sport_id' => 4,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'disque de musculation',
+                'prix' => 39.99,
+                'image' => 'disque_musculation.jpeg',
+                'sport_id' => 4,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'ballon',
+                'prix' => 9.99,
+                'image' => 'ballon.jpg',
+                'sport_id' => 4,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'Chaussure foot',
+                'prix' => 23.99,
+                'image' => 'chaussures_football.jpeg',
+                'sport_id' => 1,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'maillot de bain femme',
+                'prix' => 3.99,
+                'image' => 'maillot_de_bain_femme.jpeg',
+                'sport_id' => 4,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'maillot de foot',
+                'prix' => 29.99,
+                'image' => 'maillot_foot.jpeg',
+                'sport_id' => 1,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'maillot de bain homme',
+                'prix' => 30.89,
+                'image' => 'maillot_de_bain_homme.jpeg',
+                'sport_id' => 5,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'bonnet de natation',
+                'prix' => 23.99,
+                'image' => 'bonnet_natation.jpeg',
+                'sport_id' => 5,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'maillot basket',
+                'prix' => 19.99,
+                'image' => 'maillot_basket.jpeg',
+                'sport_id' => 2,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'chaussure sport',
+                'prix' => 59.99,
+                'image' => '71MP3f70aZL._AC_UY900_.jp',
+                'sport_id' => 2,
+                'disponibilite' => 2
+            ],
+            [
+                'nom' => 'chaussures basket',
+                'prix' => 15.19,
+                'image' => 'chaussures_basket.jpeg',
+                'sport_id' => 2,
                 'disponibilite' => 2
             ],
         ]);
