@@ -54,6 +54,14 @@
             });
 
         </script>
+
+        <div class="filter-block">
+            <h4>Frequence d'entrainement par Semaine </h4>
+            <label><input type="checkbox">  1 à 3 jours</label>
+            <label><input type="checkbox"> 3 à 5 jours</label>
+            <label><input type="checkbox"> plus de 5 jours</label>
+            
+        </div>
         
     </aside>
 
