@@ -166,75 +166,102 @@
         fetch(url)
             .then(response => response.json())
             .then(data => displayProducts(data));
-        }
+    }
 
 
-
-    
-    // Afficher produits
     // function displayProducts(products) {
-    
     //     const container = document.getElementById("products-container");
     //     container.innerHTML = "";
-    
+
     //     if (products.length === 0) {
     //         container.innerHTML = "<p>Aucun produit trouvé</p>";
     //         return;
     //     }
-    
+
     //     products.forEach(product => {
-    //         container.innerHTML += `
-    //             <div class="card">
-    //                 <img class="image" src="/images/chaussure.webp" alt="">
-    //                 <h3>${product.nom}</h3>
-    //                 <p class="price">${product.prix} €</p>
-    //                 <button>Voir le produit</button>
-    //             </div>
-    //         `;
+    //        // Déterminer la couleur selon la disponibilité
+    //     let availabilityColor = product.disponibilite === 0
+    //         ? 'red' 
+    //         : product.disponibilite < 5
+    //             ? 'orange' 
+    //             : 'green';
+
+    //     container.innerHTML += `
+    //         <div class="card" style="position: relative;">
+    //             <div class="availability-dot" style="
+    //                 width: 12px;
+    //                 height: 12px;
+    //                 border-radius: 50%;
+    //                 background-color: ${availabilityColor};
+    //                 position: absolute;
+    //                 top: 10px;
+    //                 right: 10px;
+    //             " title="Disponibilité: ${product.disponibilite}"></div>
+
+    //             <img class="image" src="/images/chaussure.webp" alt="">
+    //             <h3>${product.nom}</h3>
+    //             <p class="price">${product.prix} €</p>
+    //             <button>Voir le produit</button>
+    //         </div>
+    //     `;
     //     });
-    
     // }
 
-
-
-
     function displayProducts(products) {
-        const container = document.getElementById("products-container");
-        container.innerHTML = "";
+            const container = document.getElementById("products-container");
+            container.innerHTML = "";
 
-        if (products.length === 0) {
-            container.innerHTML = "<p>Aucun produit trouvé</p>";
-            return;
-        }
+            if (products.length === 0) {
+                container.innerHTML = "<p>Aucun produit trouvé</p>";
+                return;
+            }
 
-        products.forEach(product => {
-           // Déterminer la couleur selon la disponibilité
-        let availabilityColor = product.disponibilite === 0
-            ? 'red' 
-            : product.disponibilite < 5
-                ? 'orange' 
-                : 'green';
+            products.forEach(product => {
 
-        container.innerHTML += `
-            <div class="card" style="position: relative;">
-                <div class="availability-dot" style="
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    background-color: ${availabilityColor};
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                " title="Disponibilité: ${product.disponibilite}"></div>
+                let availabilityText = '';
+                let availabilityColor = '';
 
-                <img class="image" src="/images/chaussure.webp" alt="">
-                <h3>${product.nom}</h3>
-                <p class="price">${product.prix} €</p>
-                <button>Voir le produit</button>
-            </div>
-        `;
-        });
+                if (product.disponibilite === 0) {
+                    availabilityText = "Rupture de stock";
+                    availabilityColor = "red";
+                } 
+                else if (product.disponibilite < 5) {
+                    availabilityText = `Reste ${product.disponibilite} produit${product.disponibilite > 1 ? 's' : ''}`;
+                    availabilityColor = "orange";
+                } 
+                else {
+                    availabilityText = "Disponible";
+                    availabilityColor = "green";
+                }
+
+                container.innerHTML += `
+                    <div class="card" style="position: relative;">
+                        
+                        <div style="
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background-color: ${availabilityColor};
+                            color: white;
+                            padding: 4px 8px;
+                            font-size: 12px;
+                            border-radius: 6px;
+                        ">
+                            ${availabilityText}
+                        </div>
+
+                        <img class="image" src="/images/chaussure.webp" alt="">
+                        <h3>${product.nom}</h3>
+                        <p class="price">${product.prix} €</p>
+
+                        <button ${product.disponibilite === 0 ? 'disabled' : ''}>
+                            Voir le produit
+                        </button>
+                    </div>
+                `;
+            });
     }
+
 
     
     </script>
