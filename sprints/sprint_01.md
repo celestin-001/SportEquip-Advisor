@@ -1,5 +1,4 @@
-## Organisation du Sprint
-
+## Organisation du Sprint 1
 
 #### Choix du sujet du projet
 - Identification du besoin principal

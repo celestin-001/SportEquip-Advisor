@@ -1,10 +1,9 @@
-## Organisation du Sprint
+## Organisation du Sprint 3
 
 #### Amélioration des issues
 - Relecture et clarification des issues existantes.
 - Découpage des issues trop complexes.
 - Ajout de critères d’acceptation clairs.
-- Priorisation des issues en fonction de la valeur métier.
 
 #### Implémentation des endpoints
 - Développement des endpoints principaux du Back-End.
@@ -14,12 +13,12 @@
 #### Configuration de SonarQube
 - Installation et configuration de SonarQube.
 - Analyse automatique de la qualité du code.
-- Identification et correction des problèmes détectés (bugs, code smells).
+- Identification et correction des problèmes détectés .
 - Amélioration progressive de la qualité du code.
 
 #### Intégration du Front-End
 - Connexion du Front-End aux endpoints du Back-End.
-- Tests des échanges de données (requêtes / réponses).
+- Tests des échanges de données.
 - Vérification du bon affichage et du bon fonctionnement des fonctionnalités.
 
 ### Suivi des issues
@@ -43,4 +42,3 @@
 ####   Actions d’amélioration
 - Anticiper les contraintes de qualité du code dès le début du sprint.
 - Ajouter des tests automatisés plus tôt dans le développement.
-- Renforcer la communication entre Front-End et Back-End lors de l’intégration.
