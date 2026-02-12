@@ -151,6 +151,13 @@ header{
     right: 10px;
 }
 
+.disabled-card {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    pointer-events: none;
+}
+
+
 
 /* Texte "Se connecter" */
 .login-text {
