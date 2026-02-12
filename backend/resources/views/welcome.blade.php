@@ -55,13 +55,20 @@
 
         </script>
 
-        <div class="filter-block">
+        {{-- <div class="filter-block">
             <h4>Frequence d'entrainement par Semaine </h4>
             <label><input type="checkbox">  1 à 3 jours</label>
             <label><input type="checkbox"> 3 à 5 jours</label>
             <label><input type="checkbox"> plus de 5 jours</label>
-            
+        </div> --}}
+
+        <div class="filter-block" id="frequency-container">
+            <h4>Fréquence d'entrainement par semaine</h4>
+            <label><input type="checkbox" value="1-3" onchange="filterProducts()"> 1 à 3 jours</label>
+            <label><input type="checkbox" value="3-5" onchange="filterProducts()"> 3 à 5 jours</label>
+            <label><input type="checkbox" value="5+" onchange="filterProducts()"> plus de 5 jours</label>
         </div>
+        
         
     </aside>
 
@@ -161,8 +168,18 @@
             allCheckbox.checked = false;
         }
 
+        // Fréquence d'entrainement
+        const frequencyCheckboxes = document.querySelectorAll('#frequency-container input:checked');
+        let frequencies = [];
+        frequencyCheckboxes.forEach(input => frequencies.push(input.value));
+
+
         // Construire URL dynamique
         let url = `/api/products?max_price=${priceValue}`;
+        if (frequencies.length > 0) {
+            url += `&frequencies=${frequencies.join(',')}`;
+        }
+
 
         if (sportIds.length > 0) {
             url += `&sports=${sportIds.join(',')}`;

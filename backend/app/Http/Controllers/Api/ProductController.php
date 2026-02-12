@@ -45,7 +45,13 @@ class ProductController extends Controller
             $levels = explode(',', $request->levels);
             $query->whereIn('niveau', $levels);
         }
-     
+
+        // Filtre fréquence d'entrainement
+        if ($request->has('frequencies') && !empty($request->frequencies)) {
+            $frequencies = explode(',', $request->frequencies);
+            $query->whereIn('frequence_semaine', $frequencies);
+        }
+        
          return response()->json($query->get(), 200);
          
     }
