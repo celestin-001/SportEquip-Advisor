@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="/var/www/phpunit.xml" tests="8" assertions="17" errors="0" failures="0" skipped="0" time="1.438331">
+    <testsuite name="Unit" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.044480">
+      <testsuite name="Tests\Unit\ExampleTest" file="/var/www/tests/Unit/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.044480">
+        <testcase name="test_that_true_is_true" file="/var/www/tests/Unit/ExampleTest.php" line="12" class="Tests\Unit\ExampleTest" classname="Tests.Unit.ExampleTest" assertions="1" time="0.044480"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="Feature" tests="7" assertions="16" errors="0" failures="0" skipped="0" time="1.393852">
+      <testsuite name="Tests\Feature\AuthTest" file="/var/www/tests/Feature/AuthTest.php" tests="5" assertions="13" errors="0" failures="0" skipped="0" time="1.237485">
+        <testcase name="user_can_register" file="/var/www/tests/Feature/AuthTest.php" line="15" class="Tests\Feature\AuthTest" classname="Tests.Feature.AuthTest" assertions="5" time="1.006883"/>
+        <testcase name="register_fails_with_invalid_data" file="/var/www/tests/Feature/AuthTest.php" line="41" class="Tests\Feature\AuthTest" classname="Tests.Feature.AuthTest" assertions="1" time="0.045137"/>
+        <testcase name="user_can_login" file="/var/www/tests/Feature/AuthTest.php" line="49" class="Tests\Feature\AuthTest" classname="Tests.Feature.AuthTest" assertions="4" time="0.080968"/>
+        <testcase name="login_fails_with_wrong_password" file="/var/www/tests/Feature/AuthTest.php" line="69" class="Tests\Feature\AuthTest" classname="Tests.Feature.AuthTest" assertions="1" time="0.045696"/>
+        <testcase name="authenticated_user_can_logout" file="/var/www/tests/Feature/AuthTest.php" line="84" class="Tests\Feature\AuthTest" classname="Tests.Feature.AuthTest" assertions="2" time="0.058801"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\ExampleTest" file="/var/www/tests/Feature/ExampleTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.082320">
+        <testcase name="test_the_application_returns_a_successful_response" file="/var/www/tests/Feature/ExampleTest.php" line="13" class="Tests\Feature\ExampleTest" classname="Tests.Feature.ExampleTest" assertions="1" time="0.082320"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\ProductTest" file="/var/www/tests/Feature/ProductTest.php" tests="1" assertions="2" errors="0" failures="0" skipped="0" time="0.074047">
+        <testcase name="it_returns_all_products" file="/var/www/tests/Feature/ProductTest.php" line="14" class="Tests\Feature\ProductTest" classname="Tests.Feature.ProductTest" assertions="2" time="0.074047"/>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
