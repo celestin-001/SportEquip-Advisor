@@ -1,5 +1,4 @@
-## Organisation du Sprint
-
+## Organisation du Sprint 5
 
 #### Modification des disponibilités des produits
 - Mise en place d’un indicateur clair de disponibilité.
@@ -14,8 +13,7 @@
 
  #### gestion du niveau 
 
-
-### Rétrospective du Sprint
+### Rétrospective 
 
 ####  Points positifs
 - La disponibilité des produits est désormais claire pour l’utilisateur.

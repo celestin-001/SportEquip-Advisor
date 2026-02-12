@@ -1,11 +1,11 @@
-## Organisation du Sprint
+## Organisation du Sprint 2
 
 
 #### Énumération des principaux besoins (issues)
 - Identifier les besoins fonctionnels du projet.
-- Traduire chaque besoin en **issues GitHub** claires et compréhensibles.
+- Traduire chaque besoin en issues  claires et compréhensibles.
 - Prioriser les issues en fonction de la valeur métier.
-- Lier les issues aux rôles de l’équipe (Back-End, Front-End, Tests).
+- Lier les issues aux rôles de l’équipe 
 
 #### Mise en place de la base de données
 - Conception du schéma de la base de données.
