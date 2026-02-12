@@ -17,25 +17,24 @@
             </div>
         </div>        
 
-        <div class="filter-block">
+        <div class="filter-block" id="levels-container">
             <h4>Niveau</h4>
-            <label><input type="checkbox"> Débutant</label>
-            <label><input type="checkbox"> Intermédiaire</label>
-            <label><input type="checkbox"> Avancé</label>
-        </div>
+            <label><input type="checkbox" value="debutant" onchange="filterProducts()"> Débutant</label>
+            <label><input type="checkbox" value="intermediaire" onchange="filterProducts()"> Intermédiaire</label>
+            <label><input type="checkbox" value="avance" onchange="filterProducts()"> Avancé</label>
+        </div>        
+        
 
         <div class="filter-block">
             <h4>Prix</h4>
         
             <div class="price-values">
-                <span id="min-value">20 €</span>
-                {{-- —
-                <span id="max-value">200 €</span> --}}
+                <span id="min-value">0 €</span>
             </div>
         
             <div class="price-range">
                 <label for="prix">Prix</label>
-                <input type="range" id="prix" name="prix" min="0" max="200" value="20">
+                <input type="range" id="prix" name="prix" min="0" max="200" value="0">
             </div>
         </div>
         
@@ -69,6 +68,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         loadSports();
         loadProducts();
+        filterProducts();
     });
     
     // Charger tous les produits
@@ -112,10 +112,10 @@
     }
     
     function clearFilters() {
-    document.querySelectorAll('#sports-container input')
-        .forEach(input => input.checked = false);
+        document.querySelectorAll('#sports-container input')
+            .forEach(input => input.checked = false);
 
-    loadProducts();
+        loadProducts();
     }
 
 
@@ -160,6 +160,14 @@
             url += `&sports=${sportIds.join(',')}`;
         }
 
+        const levelCheckboxes = document.querySelectorAll('#levels-container input:checked');
+        let levels = [];
+        levelCheckboxes.forEach(input => levels.push(input.value));
+
+        if (levels.length > 0) {
+            url += `&levels=${levels.join(',')}`;
+        }
+
         // console.log("URL API:", url);
 
 
@@ -167,45 +175,6 @@
             .then(response => response.json())
             .then(data => displayProducts(data));
     }
-
-
-    // function displayProducts(products) {
-    //     const container = document.getElementById("products-container");
-    //     container.innerHTML = "";
-
-    //     if (products.length === 0) {
-    //         container.innerHTML = "<p>Aucun produit trouvé</p>";
-    //         return;
-    //     }
-
-    //     products.forEach(product => {
-    //        // Déterminer la couleur selon la disponibilité
-    //     let availabilityColor = product.disponibilite === 0
-    //         ? 'red' 
-    //         : product.disponibilite < 5
-    //             ? 'orange' 
-    //             : 'green';
-
-    //     container.innerHTML += `
-    //         <div class="card" style="position: relative;">
-    //             <div class="availability-dot" style="
-    //                 width: 12px;
-    //                 height: 12px;
-    //                 border-radius: 50%;
-    //                 background-color: ${availabilityColor};
-    //                 position: absolute;
-    //                 top: 10px;
-    //                 right: 10px;
-    //             " title="Disponibilité: ${product.disponibilite}"></div>
-
-    //             <img class="image" src="/images/chaussure.webp" alt="">
-    //             <h3>${product.nom}</h3>
-    //             <p class="price">${product.prix} €</p>
-    //             <button>Voir le produit</button>
-    //         </div>
-    //     `;
-    //     });
-    // }
 
     function displayProducts(products) {
             const container = document.getElementById("products-container");
@@ -220,10 +189,12 @@
 
                 let availabilityText = '';
                 let availabilityColor = '';
+                let disabledClass = '';
 
                 if (product.disponibilite === 0) {
                     availabilityText = "Rupture de stock";
                     availabilityColor = "red";
+                    disabledClass = "disabled-card";
                 } 
                 else if (product.disponibilite < 5) {
                     availabilityText = `Reste ${product.disponibilite} produit${product.disponibilite > 1 ? 's' : ''}`;
@@ -235,7 +206,7 @@
                 }
 
                 container.innerHTML += `
-                    <div class="card" style="position: relative;">
+                    <div class="card ${disabledClass}" style="position: relative;">
                         
                         <div style="
                             position: absolute;
@@ -250,7 +221,7 @@
                             ${availabilityText}
                         </div>
 
-                        <img class="image" src="/images/chaussure.webp" alt="">
+                        <img class="image" src="/images/${product.image}" alt="${product.nom}">
                         <h3>${product.nom}</h3>
                         <p class="price">${product.prix} €</p>
 

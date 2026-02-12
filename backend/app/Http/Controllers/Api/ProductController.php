@@ -29,20 +29,24 @@ class ProductController extends Controller
     {
          $query = Product::query();
      
-         // Filtre sports
+        // Filtre sports
          if ($request->has('sports') && !empty($request->sports)) {
              $sportIds = explode(',', $request->sports);
              $query->whereIn('sport_id', $sportIds);
          }
      
-         // Filtre prix max
+        // Filtre prix max
          if ($request->has('max_price') && !empty($request->max_price)) {
              $query->where('prix', '<=', $request->max_price);
          }
+
+        // Filtre niveaux
+        if ($request->has('levels')) {
+            $levels = explode(',', $request->levels);
+            $query->whereIn('niveau', $levels);
+        }
      
          return response()->json($query->get(), 200);
-
-
          
     }
      
